@@ -219,6 +219,25 @@ func getDefaultJobs() []*jobs.Job {
 		},
 	}
 
+	fakePutMeta := &jobs.Job{
+		ID:             "fakePutMeta",
+		Owner:          common.PYDIO_PROFILE_ADMIN,
+		Label:          "Append metadata to image nodes",
+		MaxConcurrency: 1,
+		Inactive:       false,
+		Actions: []*jobs.Action{
+			{
+				ID:         "actions.cmd.rpc",
+				Parameters: map[string]string{"Uuid": "pydio.grpc.role", "method": "RoleService.CreateRole", "request": `{"Role": {"Label": "test"}}`},
+				NodesFilter: &jobs.NodesSelector{
+					Query: &service.Query{
+						SubQueries: []*any.Any{imagesQuery},
+					},
+				},
+			},
+		},
+	}
+
 	defJobs := []*jobs.Job{
 		thumbnailsJob,
 		cleanThumbsJob,
@@ -229,6 +248,7 @@ func getDefaultJobs() []*jobs.Job {
 		fakeRPCJob,
 		fakeUsersJob,
 		fakeSelectorJob,
+		fakePutMeta,
 	}
 
 	return defJobs

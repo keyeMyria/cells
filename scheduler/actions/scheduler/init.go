@@ -39,4 +39,8 @@ func init() {
 		return &FakeUsersAction{}
 	})
 
+	actions.GetActionsManager().Register(fakePutMeta, func() actions.ConcreteAction {
+		return &FakePutMeta{}
+	})
+
 }
