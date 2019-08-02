@@ -227,7 +227,7 @@ func getDefaultJobs() []*jobs.Job {
 		Inactive:       false,
 		Actions: []*jobs.Action{
 			{
-				ID:         "actions.cmd.rpc",
+				ID:         "actions.fake.put.meta",
 				Parameters: map[string]string{"Uuid": "pydio.grpc.role", "method": "RoleService.CreateRole", "request": `{"Role": {"Label": "test"}}`},
 				NodesFilter: &jobs.NodesSelector{
 					Query: &service.Query{

@@ -59,4 +59,4 @@ ds: dev start
 clean:
 	rm -f cells cells-*
 	${GOPATH}/bin/packr clean
-	rm -rf /Users/jay/Library/Application Support/Pydio
+	rm -rf /Users/jay/Library/Application\ Support/Pydio

@@ -36,7 +36,7 @@ import (
 )
 
 var (
-	fakePutMeta = "nolie"
+	fakePutMeta = "actions.fake.put.meta"
 )
 
 type FakePutMeta struct {
