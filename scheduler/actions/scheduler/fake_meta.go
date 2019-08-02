@@ -22,7 +22,6 @@ package scheduler
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/micro/go-micro/client"
 
@@ -40,8 +39,8 @@ var (
 )
 
 type FakePutMeta struct {
-	prefix string
-	number int64
+	uuid, jsonValue, namespace, nodeUuid string
+	policies                             []*service.ResourcePolicy
 }
 
 // GetName returns this action unique identifier
@@ -65,17 +64,18 @@ func (f *FakePutMeta) ProvidesProgress() bool {
 }
 
 // Init passes parameters to the action
+//TODO PARSE MAP uuid etc... of meta
 func (f *FakePutMeta) Init(job *jobs.Job, cl client.Client, action *jobs.Action) error {
-	f.prefix = "user-"
-	f.number = 200
-	if prefix, ok := action.Parameters["prefix"]; ok {
-		f.prefix = prefix
-	}
-	if strNumber, ok := action.Parameters["ticker"]; ok {
-		if number, err := strconv.ParseInt(strNumber, 10, 64); err == nil {
-			f.number = number
-		}
-	}
+	//f.prefix = "user-"
+	//f.number = 200
+	//if prefix, ok := action.Parameters["prefix"]; ok {
+	//	f.prefix = prefix
+	//}
+	//if strNumber, ok := action.Parameters["ticker"]; ok {
+	//	if number, err := strconv.ParseInt(strNumber, 10, 64); err == nil {
+	//		f.number = number
+	//	}
+	//}
 	return nil
 }
 
